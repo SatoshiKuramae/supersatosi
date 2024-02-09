@@ -10,6 +10,7 @@
 #include "TEST_fade.h"
 #include "TEST_tutorial.h"
 #include "sound.h"
+#include "game.h"
 #define NUM_TITLE (3)
 
 //グローバル変数
@@ -27,8 +28,6 @@ int T_g_nSelect = 0;	// 現在選択している選択肢
 //==============================
 void InitTitle(void)
 {
-
-
 	T_g_nSelect = TITLEMENU_START;
 
 	LPDIRECT3DDEVICE9 pDevice;
@@ -225,7 +224,6 @@ void UpdateTitle(void)
 			SetFade(MODE_GAME);
 			break;
 		case TITLEMENU_TUTORIAL:
-			InitTutorial();
 			SetFade(MODE_TUTORIAL);
 			break;
 		default:

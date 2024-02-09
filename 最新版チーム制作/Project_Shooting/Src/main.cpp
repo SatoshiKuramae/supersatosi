@@ -481,7 +481,7 @@ void SetMode(MODE mode)
 		UninitTitle();
 		break;
 	case MODE_TUTORIAL:
-		UninitTutorial();
+		UninitGame();
 		break;
 	case MODE_GAME:
 		UninitGame();
@@ -502,7 +502,7 @@ void SetMode(MODE mode)
 		InitTitle();
 		break;
 	case MODE_TUTORIAL:
-		InitTutorial();
+		InitGame();
 		break;
 	case MODE_GAME:
 		InitGame();
