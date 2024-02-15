@@ -48,6 +48,7 @@
     <ClCompile Include="TEST_result.cpp" />
     <ClCompile Include="TEST_title.cpp" />
     <ClCompile Include="TEST_tutorial.cpp" />
+    <ClCompile Include="TutorialGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\boss.h" />
@@ -79,6 +80,7 @@
     <ClInclude Include="TEST_result.h" />
     <ClInclude Include="TEST_title.h" />
     <ClInclude Include="TEST_tutorial.h" />
+    <ClInclude Include="TutorialGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

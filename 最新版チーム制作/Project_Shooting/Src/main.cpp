@@ -405,8 +405,7 @@ void Update(void)
 		UpdateTitle();
 		break;
 	case MODE_TUTORIAL:
-		UpdateGame();
-		UpdateTutorial();
+		UpdateTutorialGame();
 		break;
 	case MODE_GAME:
 		UpdateGame();
@@ -448,7 +447,7 @@ void Draw(void)
 			DrawTitle();
 			break;
 		case MODE_TUTORIAL:
-			DrawTutorial();
+			DrawTutorialGame();
 			break;
 		case MODE_GAME:
 			DrawGame();
@@ -459,6 +458,7 @@ void Draw(void)
 		default:
 			break;
 		}
+
 		DrawFade();
 
 		//ï`âÊèIóπ
@@ -481,7 +481,7 @@ void SetMode(MODE mode)
 		UninitTitle();
 		break;
 	case MODE_TUTORIAL:
-		UninitGame();
+		UninitTutorial();
 		break;
 	case MODE_GAME:
 		UninitGame();
@@ -502,7 +502,7 @@ void SetMode(MODE mode)
 		InitTitle();
 		break;
 	case MODE_TUTORIAL:
-		InitGame();
+		InitTutorial();
 		break;
 	case MODE_GAME:
 		InitGame();

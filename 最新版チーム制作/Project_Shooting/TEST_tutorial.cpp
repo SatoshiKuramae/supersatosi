@@ -76,7 +76,6 @@ void UninitTutorial(void)
 //更新処理
 void UpdateTutorial(void)
 {
-
 	//チュートリアル終了フラグ
 	if (GetKeyboardTrigger(DIK_RETURN) == true)
 	{
@@ -87,8 +86,6 @@ void UpdateTutorial(void)
 //描画処理
 void DrawTutorial(void)
 {
-	buse = true;
-
 	LPDIRECT3DDEVICE9 pDevice;
 
 	//デバイスの取得
@@ -103,6 +100,7 @@ void DrawTutorial(void)
 	pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 
 }
+
 //人数取得（仮）
 //NumPlayer* GetNumPlayer(void)
 //{

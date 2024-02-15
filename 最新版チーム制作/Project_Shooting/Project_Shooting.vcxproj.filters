@@ -126,6 +126,9 @@
     <ClCompile Include="TEST_fade.cpp">
       <Filter>ソース ファイル\system</Filter>
     </ClCompile>
+    <ClCompile Include="TutorialGame.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\debugproc.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="TEST_tutorial.h">
       <Filter>ソース ファイル\system\ヘッダー ファイル\game\system</Filter>
+    </ClInclude>
+    <ClInclude Include="TutorialGame.h">
+      <Filter>ソース ファイル\system\ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
