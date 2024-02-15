@@ -18,7 +18,7 @@ void InitTutorial(void)
 	//頂点バッファの生成
 	pDevice->CreateVertexBuffer(sizeof(VERTEX_2D) * 4 * NUM_TUTORIAL_TEX, D3DUSAGE_WRITEONLY, FVF_VERTEX_2D, D3DPOOL_MANAGED, &g_pVtxBuffTutorial, NULL);
 
-	D3DXCreateTextureFromFile(pDevice, "data\\texture\\TEST_TEXTURE\\TUTORIAL_word.png", &g_pTextureTutorial);
+	D3DXCreateTextureFromFile(pDevice, "data\\texture\\TEST_TEXTURE\\tutorial.png", &g_pTextureTutorial);
 
 	
 
@@ -28,9 +28,9 @@ void InitTutorial(void)
 
 	//頂点座標の設定
 	pVtx[0].pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	pVtx[1].pos = D3DXVECTOR3(1280.0f, 0.0f, 0.0f);
-	pVtx[2].pos = D3DXVECTOR3(0.0f, 720.0f, 0.0f);
-	pVtx[3].pos = D3DXVECTOR3(1280.0f, 720.0f, 0.0f);
+	pVtx[1].pos = D3DXVECTOR3(1980.0f, 0.0f, 0.0f);
+	pVtx[2].pos = D3DXVECTOR3(0.0f, 1080.0f, 0.0f);
+	pVtx[3].pos = D3DXVECTOR3(1980.0f, 1080.0f, 0.0f);
 
 	pVtx[0].rhw = 1.0f;
 	pVtx[1].rhw = 1.0f;

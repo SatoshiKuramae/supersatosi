@@ -18,8 +18,7 @@ LPDIRECT3DTEXTURE9 g_pTextureTitle[NUM_TITLE] = {};
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTitle = NULL;
 float g_aPosTexTitleU[NUM_TITLE];
 Title g_Title[NUM_TITLE];
-int g_nCountAnimTitlebg;			//アニメーションカウンター
-int g_nPatternAnimTitlebg;		//アニメーションパターンNO.
+
 int T_g_nSelect = 0;	// 現在選択している選択肢
 
 

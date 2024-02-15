@@ -30,8 +30,6 @@ typedef struct
 void InitGame(void);		//ゲーム画面の初期化処理
 void UninitGame(void);		//ゲーム画面の終了処理
 void UpdateGame(void);		//ゲーム画面の更新処理
-void UpdateTutorialGame(void);	//チュートリアル時のゲーム画面アップデート
-void DrawTutorialGame(void);		//チュートリアル時のゲーム画面の描画処理
 void DrawGame(void);		//ゲーム画面の描画処理
 bool GetLayoutEdit(void);	// 編集モードのフラグ取得
 bool CntDuration(int* dur);	// 状態継続カウント用

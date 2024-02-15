@@ -18,6 +18,7 @@
 #include "TEST_tutorial.h"
 #include "TEST_fade.h"
 #include "TEST_result.h"
+#include "TutorialGame.h"
 
 /*/ マクロ定義 /*/
 #define CLASS_NAME	"WindowClass"		// ウインドウクラスの名前
@@ -481,7 +482,7 @@ void SetMode(MODE mode)
 		UninitTitle();
 		break;
 	case MODE_TUTORIAL:
-		UninitTutorial();
+		UninitTutorialGame();
 		break;
 	case MODE_GAME:
 		UninitGame();
@@ -502,7 +503,7 @@ void SetMode(MODE mode)
 		InitTitle();
 		break;
 	case MODE_TUTORIAL:
-		InitTutorial();
+		InitTutorialGame();
 		break;
 	case MODE_GAME:
 		InitGame();

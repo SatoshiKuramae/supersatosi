@@ -112,6 +112,9 @@ void InitTutorialGame(void)
 	// 物の初期
 	InitObject();
 
+	//UIの初期
+	InitTutorial();
+
 	// レティクルの初期：プレイヤーよりも先に
 	InitReticle();
 
@@ -169,6 +172,9 @@ void UninitTutorialGame(void)
 
 	// プレイヤーの終了
 	UninitPlayer();
+
+	//UIの初期
+	UninitTutorial();
 
 	// レティクルの終了
 	UninitReticle();
@@ -231,6 +237,7 @@ void UpdateTutorialGame(void)
 	if (!g_LayoutEdit_Tuto)
 	{
 		UpdateTutorial();
+
 		// テスト用の更新
 		UpdateTEST(g_AmountPlayer_Tuto);
 
@@ -248,6 +255,9 @@ void UpdateTutorialGame(void)
 
 		//エフェクトの更新処理
 		UpdateEffect();
+
+		//UIの初期
+		UpdateTutorial();
 
 		// Hayuエフェクトの更新
 		UpdateEffect_Hayu();
@@ -298,9 +308,6 @@ void DrawTutorialGame(void)
 
 #endif	// _DEBUG リリース
 
-		//UI描画
-		DrawTutorial();
-
 		// 空の描画
 		DrawSky();
 
@@ -344,6 +351,9 @@ void DrawTutorialGame(void)
 
 	// UI用ポートの設定
 	SetInfoUIport();
+
+	//UI描画
+	DrawTutorial();
 
 	/*---【ゲーム内UIの表示はここから下で行います】---*/
 
