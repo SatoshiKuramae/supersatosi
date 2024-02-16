@@ -68,6 +68,9 @@ void InitTutorialGame(void)
 	// 人数がおかしいと終了
 	assert(g_AmountPlayer_Tuto > 0 && g_AmountPlayer_Tuto <= 4);
 
+	//UIの初期
+	InitTutorial();
+
 	// 編集カメラの初期
 	InitEditCamera();
 
@@ -112,8 +115,7 @@ void InitTutorialGame(void)
 	// 物の初期
 	InitObject();
 
-	//UIの初期
-	InitTutorial();
+	
 
 	// レティクルの初期：プレイヤーよりも先に
 	InitReticle();
