@@ -3,7 +3,7 @@
 #include "TEST_fade.h"
 #include "input.h"
 //#include "TEST_ready.h"
-#define NUM_TUTORIAL_TEX (3)
+
 LPDIRECT3DTEXTURE9 g_pTextureTutorial[NUM_TUTORIAL_TEX] = {};
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTutorial = NULL;
 //NumPlayer g_NumPlayer;
@@ -11,7 +11,7 @@ LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTutorial = NULL;
 Tutorial g_Tutorial[NUM_TUTORIAL_TEX];
 bool buse;
 
-
+D3DXVECTOR3 moveUI;	//移動量
 //初期化処理
 void InitTutorial(void)
 {
@@ -26,7 +26,8 @@ void InitTutorial(void)
 	D3DXCreateTextureFromFile(pDevice, "data\\texture\\TEST_TEXTURE\\tutorial2.png", &g_pTextureTutorial[2]);
 	
 
-	
+	moveUI = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
 	VERTEX_2D* pVtx;
 	//頂点バッファをロックし、頂点データへのポインタを取得
 	g_pVtxBuffTutorial->Lock(0, 0, (void**)&pVtx, 0);
@@ -60,8 +61,8 @@ void InitTutorial(void)
 	}
 
 	SetTutorial(D3DXVECTOR3(990.0f, 540.0f, 0.0f));
-	SetTutorial(D3DXVECTOR3(970.0f, 540.0f, 0.0f));
-	SetTutorial(D3DXVECTOR3(970.0f, 540.0f, 0.0f));
+	SetTutorial(D3DXVECTOR3(-100.0f, 540.0f, 0.0f));
+	SetTutorial(D3DXVECTOR3(-100.0f, 500.0f, 0.0f));
 
 	//頂点バッファをアンロック
 	g_pVtxBuffTutorial->Unlock();
@@ -90,6 +91,37 @@ void UninitTutorial(void)
 //更新処理
 void UpdateTutorial(void)
 {
+	if (GetKeyboardPress(DIK_L) == true)
+	{
+		if (g_Tutorial[1].pos.x < 990.0f)
+		{
+			g_Tutorial[1].pos.x += 5.0f;
+		}
+	}
+	if (g_Tutorial[1].pos.x == 990.0f)
+	{
+		g_Tutorial[1].pos.y -= 5.0f;
+		if (g_Tutorial[1].pos.y < 100.0f)
+		{
+			g_Tutorial[1].bUse = false;
+		}
+	}
+	VERTEX_2D* pVtx;
+	//頂点バッファをロックし、頂点データへのポインタを取得
+	g_pVtxBuffTutorial->Lock(0, 0, (void**)&pVtx, 0);
+	for (int nCnt = 0; nCnt < NUM_TUTORIAL_TEX; nCnt++)
+	{
+		pVtx[0].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - g_Tutorial[nCnt].pSize1X, g_Tutorial[nCnt].pos.y - g_Tutorial[nCnt].pSize1Y, 0.0f);
+		pVtx[1].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x + g_Tutorial[nCnt].pSizeX, g_Tutorial[nCnt].pos.y - g_Tutorial[nCnt].pSize1Y, 0.0f);
+		pVtx[2].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - g_Tutorial[nCnt].pSize1X, g_Tutorial[nCnt].pos.y + g_Tutorial[nCnt].pSizeY, 0.0f);
+		pVtx[3].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x + g_Tutorial[nCnt].pSizeX, g_Tutorial[nCnt].pos.y + g_Tutorial[nCnt].pSizeY, 0.0f);
+		pVtx += 4;
+	}
+
+
+	//頂点バッファをアンロック
+	g_pVtxBuffTutorial->Unlock();
+
 	//チュートリアル終了フラグ
 	if (GetKeyboardTrigger(DIK_RETURN) == true)
 	{
@@ -125,14 +157,11 @@ void DrawTutorial(void)
 //配置
 void SetTutorial(D3DXVECTOR3 pos)
 {
-	float pSizeX, pSizeY, pSize1X, pSize1Y = 0.0f;
-
 	VERTEX_2D* pVtx;
 	//頂点バッファをロックし、頂点データへのポインタを取得
 	g_pVtxBuffTutorial->Lock(0, 0, (void**)&pVtx, 0);
 
-	for (int nCnt = 0; nCnt < NUM_TUTORIAL_TEX; nCnt++,pVtx += 4
-		)
+	for (int nCnt = 0; nCnt < NUM_TUTORIAL_TEX; nCnt++,pVtx += 4)
 	{
 		if (g_Tutorial[nCnt].bUse == false)
 		{
@@ -140,33 +169,32 @@ void SetTutorial(D3DXVECTOR3 pos)
 			g_Tutorial[nCnt].pos = pos;
 
 			
-
 			if (nCnt == 0)
 			{
-				pSize1X = 990.0f;
-				pSize1Y = 540.0f;
-				pSizeX = 990.0f;
-				pSizeY = 540.0f;
+				g_Tutorial[nCnt].pSize1X = 990.0f;
+				g_Tutorial[nCnt].pSize1Y = 540.0f;
+				g_Tutorial[nCnt].pSizeX = 990.0f;
+				g_Tutorial[nCnt].pSizeY = 540.0f;
 			}
 			else if (nCnt == 1)
 			{
-				pSize1X = 400.0f;
-				pSize1Y = 100.0f;
-				pSizeX = 400.0f;
-				pSizeY = 100.0f;
+				g_Tutorial[nCnt].pSize1X = 400.0f;
+				g_Tutorial[nCnt].pSize1Y = 100.0f;
+				g_Tutorial[nCnt].pSizeX = 400.0f;
+				g_Tutorial[nCnt].pSizeY = 100.0f;
 			}
 			else if (nCnt == 2)
 			{
-				pSize1X = 400.0f;
-				pSize1Y = 100.0f;
-				pSizeX = 400.0f;
-				pSizeY = 100.0f;
+				g_Tutorial[nCnt].pSize1X = 400.0f;
+				g_Tutorial[nCnt].pSize1Y = 100.0f;
+				g_Tutorial[nCnt].pSizeX = 400.0f;
+				g_Tutorial[nCnt].pSizeY = 100.0f;
 			}
 
-			pVtx[0].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - pSize1X, g_Tutorial[nCnt].pos.y - pSize1Y, 0.0f);
-			pVtx[1].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x + pSizeX, g_Tutorial[nCnt].pos.y - pSize1Y, 0.0f);
-			pVtx[2].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - pSize1X, g_Tutorial[nCnt].pos.y + pSizeY, 0.0f);
-			pVtx[3].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x + pSizeX, g_Tutorial[nCnt].pos.y + pSizeY, 0.0f);
+			pVtx[0].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - g_Tutorial[nCnt].pSize1X, g_Tutorial[nCnt].pos.y - g_Tutorial[nCnt].pSize1Y, 0.0f);
+			pVtx[1].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x + g_Tutorial[nCnt].pSizeX, g_Tutorial[nCnt].pos.y - g_Tutorial[nCnt].pSize1Y, 0.0f);
+			pVtx[2].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - g_Tutorial[nCnt].pSize1X, g_Tutorial[nCnt].pos.y + g_Tutorial[nCnt].pSizeY, 0.0f);
+			pVtx[3].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x + g_Tutorial[nCnt].pSizeX, g_Tutorial[nCnt].pos.y + g_Tutorial[nCnt].pSizeY, 0.0f);
 
 			g_Tutorial[nCnt].bUse = true;
 			break;
@@ -175,6 +203,13 @@ void SetTutorial(D3DXVECTOR3 pos)
 
 	//頂点バッファをアンロック
 	g_pVtxBuffTutorial->Unlock();
+}
+
+
+//UI情報
+Tutorial* GetTutorial(void)
+{
+	return g_Tutorial;
 }
 
 //人数取得（仮）

@@ -49,6 +49,7 @@ void InitTitle(void)
 	fSize1X = 0.0f;
 	fSize1Y = 0.0f;
 
+
 	VERTEX_2D* pVtx;
 	//頂点バッファをロックし、頂点データへのポインタを取得
 	g_pVtxBuffTitle->Lock(0, 0, (void**)&pVtx, 0);

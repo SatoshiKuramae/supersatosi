@@ -238,7 +238,6 @@ void UpdateTutorialGame(void)
 
 	if (!g_LayoutEdit_Tuto)
 	{
-		UpdateTutorial();
 
 		// テスト用の更新
 		UpdateTEST(g_AmountPlayer_Tuto);
