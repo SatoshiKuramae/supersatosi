@@ -2,7 +2,7 @@
 #include "main.h"
 #include "TEST_fade.h"
 #include "input.h"
-//#include "TEST_ready.h"
+
 
 LPDIRECT3DTEXTURE9 g_pTextureTutorial[NUM_TUTORIAL_TEX] = {};
 LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTutorial = NULL;
