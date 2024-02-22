@@ -10,12 +10,12 @@ LPDIRECT3DVERTEXBUFFER9 g_pVtxBuffTutorial = NULL;
 
 Tutorial g_Tutorial[NUM_TUTORIAL_TEX];
 bool buse;
-int interval;	//表示している時間
+bool UImove;
 D3DXVECTOR3 moveUI;	//移動量
 //初期化処理
 void InitTutorial(void)
 {
-	interval = 0;
+	UImove = false;
 	LPDIRECT3DDEVICE9 pDevice;
 	//デバイスの取得
 	pDevice = GetDevice();
@@ -62,8 +62,8 @@ void InitTutorial(void)
 	}
 
 	SetTutorial(D3DXVECTOR3(990.0f, 540.0f, 0.0f));
-	SetTutorial(D3DXVECTOR3(-100.0f, 540.0f, 0.0f));
-	SetTutorial(D3DXVECTOR3(-100.0f, 500.0f, 0.0f));
+	SetTutorial(D3DXVECTOR3(-580.0f, 540.0f, 0.0f));
+	SetTutorial(D3DXVECTOR3(2480.0f, 540.0f, 0.0f));
 
 	//頂点バッファをアンロック
 	g_pVtxBuffTutorial->Unlock();
@@ -95,52 +95,48 @@ void UpdateTutorial(void)
 	//仮動作
 	if (g_Tutorial[1].bUse==true)
 	{
-		if (g_Tutorial[1].pos.x < 970.0f)
+		if (g_Tutorial[1].pos.x < 500.0f)
 		{
 			g_Tutorial[1].pos.x += 5.0f;
+			
 		}
-		if (g_Tutorial[1].pos.x == 970.0f)
+		if (GetKeyboardTrigger(DIK_A)==true)
 		{
-			g_Tutorial[1].pos.x += 0.0f;
-			interval++;
-			if (interval > 100)
-			{
-
-				g_Tutorial[1].pos.y -= 5.0f;
-			}
-
-			if (g_Tutorial[1].pos.y < 100.0f)
-			{
-				interval = 0;
-				g_Tutorial[1].bUse = false;
-			}
+			UImove = true;
+		}
+		if (UImove == true)
+		{
+			g_Tutorial[1].pos.y -= 5.0f;
+			
+		}
+		if (g_Tutorial[1].pos.y < 100.0f)
+		{
+			g_Tutorial[1].bUse = false;
+			
 		}
 	}
-	
-	if (g_Tutorial[1].bUse == false)
+	if (g_Tutorial[2].bUse == true)
 	{
-		if (g_Tutorial[2].pos.x < 970.0f)
+		if (g_Tutorial[2].pos.x > 1415.0f)
 		{
-			g_Tutorial[2].pos.x += 5.0f;
+			g_Tutorial[2].pos.x -= 5.0f;
+
 		}
-		if (g_Tutorial[2].pos.x == 970.0f)
+		if (GetKeyboardTrigger(DIK_A) == true)
 		{
-			g_Tutorial[2].pos.x += 0.0f;
-			interval++;
-			if (interval > 100)
-			{
+			UImove = true;
+		}
+		if (UImove == true)
+		{
+			g_Tutorial[2].pos.y -= 5.0f;
 
-				g_Tutorial[2].pos.y -= 5.0f;
-			}
+		}
+		if (g_Tutorial[2].pos.y < 100.0f)
+		{
+			g_Tutorial[2].bUse = false;
 
-			if (g_Tutorial[2].pos.y < 100.0f)
-			{
-				interval = 0;
-				g_Tutorial[2].bUse = false;
-			}
 		}
 	}
-	
 	
 	VERTEX_2D* pVtx;
 	//頂点バッファをロックし、頂点データへのポインタを取得
@@ -159,7 +155,7 @@ void UpdateTutorial(void)
 	g_pVtxBuffTutorial->Unlock();
 
 	//チュートリアル終了フラグ
-	if (g_Tutorial[2].bUse == false)
+	if (g_Tutorial[1].bUse == false)
 	{
 		if (GetKeyboardTrigger(DIK_RETURN) == true)
 		{
@@ -217,17 +213,17 @@ void SetTutorial(D3DXVECTOR3 pos)
 			}
 			else if (nCnt == 1)
 			{
-				g_Tutorial[nCnt].pSize1X = 400.0f;
-				g_Tutorial[nCnt].pSize1Y = 100.0f;
-				g_Tutorial[nCnt].pSizeX = 400.0f;
-				g_Tutorial[nCnt].pSizeY = 100.0f;
+				g_Tutorial[nCnt].pSize1X = 350.0f;
+				g_Tutorial[nCnt].pSize1Y = 120.0f;
+				g_Tutorial[nCnt].pSizeX = 350.0f;
+				g_Tutorial[nCnt].pSizeY = 120.0f;
 			}
 			else if (nCnt == 2)
 			{
-				g_Tutorial[nCnt].pSize1X = 400.0f;
-				g_Tutorial[nCnt].pSize1Y = 100.0f;
-				g_Tutorial[nCnt].pSizeX = 400.0f;
-				g_Tutorial[nCnt].pSizeY = 100.0f;
+				g_Tutorial[nCnt].pSize1X = 350.0f;
+				g_Tutorial[nCnt].pSize1Y = 120.0f;
+				g_Tutorial[nCnt].pSizeX = 350.0f;
+				g_Tutorial[nCnt].pSizeY = 120.0f;
 			}
 
 			pVtx[0].pos = D3DXVECTOR3(g_Tutorial[nCnt].pos.x - g_Tutorial[nCnt].pSize1X, g_Tutorial[nCnt].pos.y - g_Tutorial[nCnt].pSize1Y, 0.0f);
@@ -251,10 +247,5 @@ Tutorial* GetTutorial(void)
 	return g_Tutorial;
 }
 
-//人数取得（仮）
-//NumPlayer* GetNumPlayer(void)
-//{
-//	return &g_NumPlayer;
-//}
 
 

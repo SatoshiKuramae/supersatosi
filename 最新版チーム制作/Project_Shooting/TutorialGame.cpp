@@ -257,7 +257,7 @@ void UpdateTutorialGame(void)
 		//エフェクトの更新処理
 		UpdateEffect();
 
-		//UIの初期
+		//UIの更新
 		UpdateTutorial();
 
 		// Hayuエフェクトの更新

@@ -20,7 +20,7 @@ void UninitTutorial(void);
 void UpdateTutorial(void);
 void DrawTutorial(void);
 void SetTutorial(D3DXVECTOR3 pos);
-bool ReturnUse(void);
+
 Tutorial* GetTutorial(void);
 #endif // !TUTORIAL_H_
 
