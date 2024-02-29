@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ready.cpp" />
     <ClCompile Include="Src\boss.cpp" />
     <ClCompile Include="Src\bullet.cpp" />
     <ClCompile Include="Src\camera.cpp" />
@@ -51,6 +52,7 @@
     <ClCompile Include="TutorialGame.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ready.h" />
     <ClInclude Include="Src\boss.h" />
     <ClInclude Include="Src\bullet.h" />
     <ClInclude Include="Src\camera.h" />

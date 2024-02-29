@@ -29,6 +29,7 @@
 #include "sky.h"
 #include "TEST_tutorial.h"
 #include "TutorialGame.h"
+#include "ready.h"
 // デバッグ時
 #ifdef _DEBUG
 #include "debugproc.h"
@@ -70,6 +71,7 @@ void InitTutorialGame(void)
 
 	//UIの初期
 	InitTutorial();
+	InitReady();
 
 	// 編集カメラの初期
 	InitEditCamera();
@@ -177,7 +179,7 @@ void UninitTutorialGame(void)
 
 	//UIの初期
 	UninitTutorial();
-
+	UninitReady();
 	// レティクルの終了
 	UninitReticle();
 
@@ -259,7 +261,7 @@ void UpdateTutorialGame(void)
 
 		//UIの更新
 		UpdateTutorial();
-
+		UpdateReady();
 		// Hayuエフェクトの更新
 		UpdateEffect_Hayu();
 
@@ -355,7 +357,7 @@ void DrawTutorialGame(void)
 
 	//UI描画
 	DrawTutorial();
-
+	DrawReady();
 	/*---【ゲーム内UIの表示はここから下で行います】---*/
 
 #ifdef _DEBUG
